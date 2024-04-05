@@ -90,6 +90,9 @@ But first of all let's quickly see how to install the whole thing to create our 
 5. configure UFW firewall by using "sudo uf allow ssh" command, then "sudo ufw enable"
 6. if needed, install addintional softwares by usin "sudo apt install -name_of_the_software- ". For this project for exemple i added GIMP and LibreOffice.
 7. set up Remote 
-8. 
+
+* if for some reson you need infos about your server, use the "IP A" command
+
+![image](https://github.com/Vfvs37/let-s-build-a-linux-server/assets/155911615/863138dd-c35d-49e4-a731-ff3556874a74)
 
 
