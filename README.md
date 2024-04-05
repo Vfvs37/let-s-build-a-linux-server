@@ -62,7 +62,7 @@ Ubuntu 22.04.4 TLS
 As you can see, there's no graphical interface. All the configurations are made in a black interface, wich let you directly acces to the terminal once the configurations are done.
 
 But first of all let's quickly see how to install the whole thing to create our VM.
-1. after installing VMWare by following this tutorial: https://www.youtube.com/watch?v=9QXXyG0hKtI
+1. after installing VirtualBox by following this tutorial: https://www.youtube.com/watch?v=nwjZWHou8u0
 2. download the ISO file on https://ubuntu.com/download/server
    ![image](https://github.com/Vfvs37/let-s-build-a-linux-server/assets/155911615/a8ac98c3-2903-4191-88f6-bc724b759e31)
   it should looks like that on your files
@@ -94,5 +94,30 @@ But first of all let's quickly see how to install the whole thing to create our 
 * if for some reson you need infos about your server, use the "IP A" command
 
 ![image](https://github.com/Vfvs37/let-s-build-a-linux-server/assets/155911615/863138dd-c35d-49e4-a731-ff3556874a74)
+
+
+[As you can see, there is 2 parts. The seconde one is about Enp0s3 interface. Let's explain it:
+
+The use of the "enp0s3" interface typically refers to a specific network interface on a Linux system. This naming convention is often seen in modern Linux distributions where network interfaces are named based on their physical location or other identifying factors. 
+
+For example, "enp0s3" might indicate the third network interface (3) on the first (0) PCI bus slot (p0) in the system. 
+
+As to why this interface is being used, it could be due to several reasons:
+
+1. **Automatic Assignment**: The system might have automatically assigned this interface to handle network communication based on its configuration or detection during installation.
+
+2. **Static Configuration**: It could be statically configured to handle specific networking tasks within the system or network environment.
+
+3. **Virtual Machine Configuration**: In a virtualized environment, such as VirtualBox or VMware, "enp0s3" might be the default interface name given to the virtual network adapter connected to the host's physical network.
+
+4. **Hardware Configuration**: It might correspond to a specific physical network adapter installed on the system.
+
+The precise reason would depend on the context of the system's setup and configuration. 
+In my prject i used it and the ip adress is 10.0.2.15/24 because in VirtualBox we'll modifu-y some settings on the VM by add another interfaceto enable the configuration of a static IP address, facilitating SSH and GLPI setup.]
+
+8. activating the network interface on the network settings and chosing the private host network, wich name is "virtualBox Host-Only Ethernet Adapter"
+9. then manage manually your static ip adress
+10. to finish, type the "ip a" command on your terminal to see if everythig's managed correctly
+    
 
 
