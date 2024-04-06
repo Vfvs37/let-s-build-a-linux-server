@@ -53,7 +53,7 @@ the documentation must be clear, structured and must provide all elements of con
 ![image](https://github.com/Vfvs37/let-s-build-a-linux-server/assets/155911615/984ea7bd-78f6-445d-8165-e052f2f76003)
 
 
-**1: LINUX SERVER (no graphical interface)**
+** LINUX SERVER (no graphical interface)**
 
 Ubuntu 22.04.4 TLS
 
@@ -81,7 +81,7 @@ But first of all let's quickly see how to install the whole thing to create our 
 
 5. then put some power on your machine and start configurate it, chose your language and let all the default settings for now, no need to change nothing
 
-***configurations***
+***1: configurations***
 
 1. updating by using "sudo apt update" command
 2. upgrating by using "sudo apt upgrade" command
@@ -91,12 +91,12 @@ But first of all let's quickly see how to install the whole thing to create our 
 6. if needed, install addintional softwares by usin "sudo apt install -name_of_the_software- ". For this project for exemple i added GIMP and LibreOffice.
 7. set up Remote 
 
-* if for some reson you need infos about your server, use the "IP A" command
+[* if for some reson you need infos about your server, use the "IP A" command
 
 ![image](https://github.com/Vfvs37/let-s-build-a-linux-server/assets/155911615/863138dd-c35d-49e4-a731-ff3556874a74)
 
 
-[As you can see, there is 2 parts. The seconde one is about Enp0s3 interface. Let's explain it:
+As you can see, there is 2 parts. The seconde one is about Enp0s3 interface. Let's explain it:
 
 The use of the "enp0s3" interface typically refers to a specific network interface on a Linux system. This naming convention is often seen in modern Linux distributions where network interfaces are named based on their physical location or other identifying factors. 
 
@@ -104,20 +104,25 @@ For example, "enp0s3" might indicate the third network interface (3) on the firs
 
 As to why this interface is being used, it could be due to several reasons:
 
-1. **Automatic Assignment**: The system might have automatically assigned this interface to handle network communication based on its configuration or detection during installation.
+* **Automatic Assignment**: The system might have automatically assigned this interface to handle network communication based on its configuration or detection during installation.
 
-2. **Static Configuration**: It could be statically configured to handle specific networking tasks within the system or network environment.
+* **Static Configuration**: It could be statically configured to handle specific networking tasks within the system or network environment.
 
-3. **Virtual Machine Configuration**: In a virtualized environment, such as VirtualBox or VMware, "enp0s3" might be the default interface name given to the virtual network adapter connected to the host's physical network.
+* **Virtual Machine Configuration**: In a virtualized environment, such as VirtualBox or VMware, "enp0s3" might be the default interface name given to the virtual network adapter connected to the host's physical network.
 
-4. **Hardware Configuration**: It might correspond to a specific physical network adapter installed on the system.
+* **Hardware Configuration**: It might correspond to a specific physical network adapter installed on the system.
 
 The precise reason would depend on the context of the system's setup and configuration. 
 In my prject i used it and the ip adress is 10.0.2.15/24 because in VirtualBox we'll modifu-y some settings on the VM by add another interfaceto enable the configuration of a static IP address, facilitating SSH and GLPI setup.]
 
+
+
 8. activating the network interface on the network settings and chosing the private host network, wich name is "virtualBox Host-Only Ethernet Adapter"
 9. then manage manually your static ip adress
 10. to finish, type the "ip a" command on your terminal to see if everythig's managed correctly
+
+***2: DHCP server***
+
     
 
 
