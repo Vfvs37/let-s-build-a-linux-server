@@ -59,7 +59,7 @@ Ubuntu 22.04.4 TLS
 
 ![image](https://github.com/Vfvs37/let-s-build-a-linux-server/assets/155911615/a7becb3f-e1f5-44b6-8a36-048e3c3ab887)
 
-As you can see, there's no graphical interface. All the configurations are made in a black interface, wich let you directly acces to the terminal once the configurations are done.
+As you can see, there's no graphical interface. All the configurations are made in a black interface, which let you directly acces to the terminal once the configurations are done.
 
 But first of all let's quickly see how to install the whole thing to create our VM.
 1. after installing VirtualBox by following this tutorial: https://www.youtube.com/watch?v=nwjZWHou8u0
