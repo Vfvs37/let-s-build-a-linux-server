@@ -125,7 +125,7 @@ In my prject i used it and the ip adress is 10.0.2.15/24 because in VirtualBox w
 
 To configure a DHCP server on Ubuntu Linux, you can use the DHCP server package called `isc-dhcp-server`. Here's a step-by-step guide to configure DHCP on an Ubuntu Linux server:
 
-1. **Install DHCP Server:**
+**1. **Install DHCP Server:****
    
    First, you need to install the DHCP server package. You can do this by running the following command in your terminal:
 
@@ -134,7 +134,7 @@ To configure a DHCP server on Ubuntu Linux, you can use the DHCP server package 
    sudo apt install isc-dhcp-server
    ```
 
-2. **Configure DHCP Server:**
+**2. **Configure DHCP Server:****
 
    After installing the DHCP server package, you need to configure it. The main configuration file for `isc-dhcp-server` is `/etc/dhcp/dhcpd.conf`. You can use a text editor like `nano` or `vim` to edit this file. For example:
 
