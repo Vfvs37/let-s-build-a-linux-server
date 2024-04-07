@@ -121,6 +121,8 @@ In my prject i used it and the ip adress is 10.0.2.15/24 because in VirtualBox w
 9. then manage manually your static ip adress
 10. to finish, type the "ip a" command on your terminal to see if everythig's managed correctly
 
+
+
 ***2: DHCP server***
 
 To configure a DHCP server on Ubuntu Linux, you can use the DHCP server package called `isc-dhcp-server`. Here's a step-by-step guide to configure DHCP on an Ubuntu Linux server:
@@ -149,7 +151,7 @@ To configure a DHCP server on Ubuntu Linux, you can use the DHCP server package 
        range 192.168.1.100 192.168.1.200;
        option routers 192.168.1.1;
        option domain-name-servers 8.8.8.8, 8.8.4.4;
-       option domain-name "example.com";
+       option domain-name;
    }
    ```
 
@@ -161,7 +163,7 @@ To configure a DHCP server on Ubuntu Linux, you can use the DHCP server package 
 
    Customize these options according to your network configuration.
 
-3. **Specify Network Interface:**
+**3. **Specify Network Interface:****
 
    Next, you need to specify the network interface that the DHCP server will listen on. Open the `/etc/default/isc-dhcp-server` file:
 
@@ -177,7 +179,7 @@ To configure a DHCP server on Ubuntu Linux, you can use the DHCP server package 
 
    Replace `eth0` with your actual network interface.
 
-4. **Start DHCP Server:**
+**4. **Start DHCP Server:****
 
    After configuring the DHCP server, start the service:
 
@@ -191,7 +193,7 @@ To configure a DHCP server on Ubuntu Linux, you can use the DHCP server package 
    sudo systemctl enable isc-dhcp-server
    ```
 
-5. **Check DHCP Server Status:**
+**5. **Check DHCP Server Status:****
 
    You can check the status of the DHCP server to ensure it's running without errors:
 
@@ -199,8 +201,225 @@ To configure a DHCP server on Ubuntu Linux, you can use the DHCP server package 
    sudo systemctl status isc-dhcp-server
    ```
 
-That's it! Your Ubuntu Linux server is now configured as a DHCP server. Make sure to test it by connecting a client device to the network and verifying if it receives an IP address from the DHCP server.
+Your Ubuntu Linux server is configured as a DHCP server. 
+Make sure to test it by connecting a client device to the network and verifying if it receives an IP address from the DHCP server like that: 
+
+**1. **Connect Client Device to Network:****
+   
+   Ensure that your client device (e.g., a computer or laptop) is connected to the same network where your DHCP server is running. Connect the client device via Ethernet cable or Wi-Fi.
+
+**2. **Check Network Settings on Client Device:****
+   
+   On the client device, check its network settings to ensure it's set to obtain an IP address automatically (DHCP). Here's how to do it on different operating systems:
+
+   - **Windows:**
+     - Go to "Control Panel" > "Network and Sharing Center" > "Change adapter settings".
+     - Right-click on the network adapter and select "Properties".
+     - Select "Internet Protocol Version 4 (TCP/IPv4)" and click on "Properties".
+     - Ensure that "Obtain an IP address automatically" and "Obtain DNS server address automatically" are selected.
+
+   - **MacOS:**
+     - Go to "System Preferences" > "Network".
+     - Select the network connection (Ethernet or Wi-Fi).
+     - Click on "Advanced" > "TCP/IP".
+     - Configure IPv4 as "Using DHCP".
+
+   - **Linux:**
+     - Use commands like `ifconfig` or `ip addr show` to check the network interface configuration.
+     - Ensure that the interface is set to use DHCP.
+
+**3. **Restart Networking Services (if necessary):****
+
+   Sometimes, especially on Linux systems, you may need to restart networking services for the changes to take effect. You can do this by running:
+
+   ```
+   sudo systemctl restart networking
+   ```
+
+**4. **Observe IP Address Assignment:****
+
+   Once the client device is connected to the network, observe whether it receives an IP address from the DHCP server. You can check the assigned IP address by:
+
+   - **Windows:**
+     - Open Command Prompt and run `ipconfig` command.
+   
+   - **MacOS / Linux:**
+     - Open Terminal and run `ifconfig` or `ip addr show` command.
+
+   Look for the IP address assigned to the network interface connected to your local network. It should be in the range specified by your DHCP server.
+
+**5. **Verify Connectivity:****
+
+ * After obtaining the IP address from the DHCP server, verify that the client device can access the network and communicate with other devices. You can try pinging other devices or accessing internet websites to ensure connectivity.
+
+* If the client device successfully obtains an IP address from the DHCP server and can communicate on the network, it confirms that your DHCP server is working correctly.
+
+
+
+**Start and Enable DHCP Service**
 
     
+To start and enable the DHCP service on Ubuntu Linux, we:
+
+**1. **Start DHCP Service:****
+
+   The DHCP service on Ubuntu is managed by the `isc-dhcp-server` package. To manually start the DHCP service, you use the `systemctl` command. This command initiates the service immediately without waiting for system restarts:
+
+   ```
+   sudo systemctl start isc-dhcp-server
+   ```
+
+   This command starts the DHCP service named `isc-dhcp-server`.
+
+**2. **Enable DHCP Service on Boot:****
+
+   To ensure that the DHCP service starts automatically every time your system boots up, you need to enable it. Enabling the service creates symbolic links in the appropriate directories, allowing the system to start the service during the boot process:
+
+   ```
+   sudo systemctl enable isc-dhcp-server
+   ```
+
+   Enabling the DHCP service ensures that it automatically starts during system startup, providing uninterrupted DHCP functionality for your network.
+
+**3. **Check DHCP Service Status:****
+
+   After starting and enabling the DHCP service, you can verify its current status to ensure it's running correctly and without any issues. You use the `systemctl status` command to display detailed information about the DHCP service, including its current state, recent logs, and any errors:
+
+   ```
+   sudo systemctl status isc-dhcp-server
+   ```
+
+* This command provides a comprehensive overview of the DHCP service's status, indicating whether it's active and any relevant logs or errors.
+
+* By using the `systemctl` command, you can effectively manage the DHCP service on Ubuntu Linux, ensuring it starts automatically on boot and operates smoothly to handle IP address assignments for client devices on your network.
+
+
+
+***3: DNS server***
+
+
+Now we should set a DNS server. I did it with BIND (Berkeley Internet Name Domain), but it involves some difficults (for me) steps. 
+
+
+Setting up a DNS server with BIND (Berkeley Internet Name Domain) on Ubuntu Linux involves several steps. Here's a detailed guide to help you set up a DNS server using BIND:
+
+**1. **Install BIND:****
+
+   First, you need to install the BIND software package. You can do this using the following command:
+
+   ```
+   sudo apt update
+   sudo apt install bind9
+   ```
+
+**2. **Configure BIND:****
+
+   Once BIND is installed, you need to configure it. The main configuration file for BIND is located at `/etc/bind/named.conf`. This file includes other configuration files located in the `/etc/bind` directory.
+
+   Open the main configuration file in a text editor:
+
+   ```
+   sudo nano /etc/bind/named.conf
+   ```
+
+   In this file, you can configure options such as listening interfaces, forwarders, and zone configurations.
+
+**3. **Configure Zones:****
+
+   Next, you need to configure DNS zones. Zones define the domains for which your DNS server will be authoritative. You'll typically have at least a forward lookup zone for your domain.
+
+   Create or edit a zone file for your domain. For example, if your domain is `example.com`, create a file named `example.com.zone`:
+
+   ```
+   sudo nano /etc/bind/zones/example.com.zone
+   ```
+
+   Here's an example zone file for `example.com`:
+
+   ```
+   $TTL 86400
+   @ IN SOA ns1.example.com. admin.example.com. (
+       2022040501 ; Serial
+       3600 ; Refresh
+       1800 ; Retry
+       604800 ; Expire
+       86400 ; Minimum TTL
+   )
+   @ IN NS ns1.example.com.
+   ns1 IN A 192.168.1.10
+   www IN A 192.168.1.20
+   ```
+
+   Modify the file according to your domain and IP addresses.
+
+**4. **Configure Reverse Lookup Zone:****
+
+   Additionally, you may want to configure a reverse lookup zone to map IP addresses to hostnames.
+
+   Create or edit a reverse zone file. For example, for the subnet `192.168.1.0/24`, create a file named `1.168.192.in-addr.arpa.zone`:
+
+   ```
+   sudo nano /etc/bind/zones/1.168.192.in-addr.arpa.zone
+   ```
+
+   Here's an example reverse zone file:
+
+   ```
+   $TTL 86400
+   @ IN SOA ns1.example.com. admin.example.com. (
+       2022040501 ; Serial
+       3600 ; Refresh
+       1800 ; Retry
+       604800 ; Expire
+       86400 ; Minimum TTL
+   )
+   @ IN NS ns1.example.com.
+   10 IN PTR ns1.example.com.
+   20 IN PTR www.example.com.
+   ```
+
+**5. **Configure Named.conf.local:****
+
+   You also need to include your zone files in `named.conf.local`:
+
+   ```
+   sudo nano /etc/bind/named.conf.local
+   ```
+
+   Add zone configurations:
+
+   ```
+   zone "example.com" {
+       type master;
+       file "/etc/bind/zones/example.com.zone";
+   };
+
+   zone "1.168.192.in-addr.arpa" {
+       type master;
+       file "/etc/bind/zones/1.168.192.in-addr.arpa.zone";
+   };
+   ```
+
+**6. **Restart BIND:****
+
+   After configuring BIND and your DNS zones, restart the BIND service to apply the changes:
+
+   ```
+   sudo systemctl restart bind9
+   ```
+
+**7. **Test DNS Configuration:****
+
+   Finally, test your DNS server configuration by querying it for domain names and IP addresses:
+
+   ```
+   nslookup example.com
+   ```
+
+   This command should return the IP address associated with the domain `example.com`.
+
+
+Setting up the DNS allows you to resolve domain names within your network. Adjust the configurations according to your specific requirements and domain setup.
+
 
 
