@@ -123,6 +123,84 @@ In my prject i used it and the ip adress is 10.0.2.15/24 because in VirtualBox w
 
 ***2: DHCP server***
 
+To configure a DHCP server on Ubuntu Linux, you can use the DHCP server package called `isc-dhcp-server`. Here's a step-by-step guide to configure DHCP on an Ubuntu Linux server:
+
+1. **Install DHCP Server:**
+   
+   First, you need to install the DHCP server package. You can do this by running the following command in your terminal:
+
+   ```
+   sudo apt update
+   sudo apt install isc-dhcp-server
+   ```
+
+2. **Configure DHCP Server:**
+
+   After installing the DHCP server package, you need to configure it. The main configuration file for `isc-dhcp-server` is `/etc/dhcp/dhcpd.conf`. You can use a text editor like `nano` or `vim` to edit this file. For example:
+
+   ```
+   sudo nano /etc/dhcp/dhcpd.conf
+   ```
+
+   Here's a basic example of a DHCP configuration file:
+
+   ```conf
+   subnet 192.168.1.0 netmask 255.255.255.0 {
+       range 192.168.1.100 192.168.1.200;
+       option routers 192.168.1.1;
+       option domain-name-servers 8.8.8.8, 8.8.4.4;
+       option domain-name "example.com";
+   }
+   ```
+
+   - `subnet`: Defines the subnet and netmask for the DHCP server.
+   - `range`: Specifies the range of IP addresses that the DHCP server can assign to clients.
+   - `option routers`: Specifies the default gateway for the clients.
+   - `option domain-name-servers`: Specifies the DNS servers.
+   - `option domain-name`: Specifies the domain name.
+
+   Customize these options according to your network configuration.
+
+3. **Specify Network Interface:**
+
+   Next, you need to specify the network interface that the DHCP server will listen on. Open the `/etc/default/isc-dhcp-server` file:
+
+   ```
+   sudo nano /etc/default/isc-dhcp-server
+   ```
+
+   Uncomment and edit the `INTERFACESv4` line to specify the network interface:
+
+   ```
+   INTERFACESv4="eth0"
+   ```
+
+   Replace `eth0` with your actual network interface.
+
+4. **Start DHCP Server:**
+
+   After configuring the DHCP server, start the service:
+
+   ```
+   sudo systemctl start isc-dhcp-server
+   ```
+
+   You can also enable the DHCP server to start automatically on boot:
+
+   ```
+   sudo systemctl enable isc-dhcp-server
+   ```
+
+5. **Check DHCP Server Status:**
+
+   You can check the status of the DHCP server to ensure it's running without errors:
+
+   ```
+   sudo systemctl status isc-dhcp-server
+   ```
+
+That's it! Your Ubuntu Linux server is now configured as a DHCP server. Make sure to test it by connecting a client device to the network and verifying if it receives an IP address from the DHCP server.
+
     
 
 
