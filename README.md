@@ -2,7 +2,7 @@
 
 solo project during BeCode Bootcamp
 
-Appendices: documentation in word format, summary, link to a demo
+> Appendices: documentation in word format, summary, link to a demo
 
 
 **PROJECT PURPOSE**
@@ -40,7 +40,7 @@ Set up the following Linux infrastructure:
 The teams must give a sense of confidence to the audience when presenting their demo,
 the documentation must be clear, structured and must provide all elements of configuration.
 
-****************************************************************************************************************************
+***************************************************************************************************************************
 
 ***STEP BY STEP***
 
