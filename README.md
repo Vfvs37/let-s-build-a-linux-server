@@ -65,7 +65,7 @@ But first of all let's quickly see how to install the whole thing to create our 
 1. after installing VirtualBox by following this tutorial: https://www.youtube.com/watch?v=nwjZWHou8u0
 2. download the ISO file on https://ubuntu.com/download/server
    ![image](https://github.com/Vfvs37/let-s-build-a-linux-server/assets/155911615/a8ac98c3-2903-4191-88f6-bc724b759e31)
-  it should looks like that on your files
+  it should look like that on your files
 3. then follow this tutorial to creat your VM for a good installation: https://www.youtube.com/watch?v=IJ45EzEDimE&list=PL2ZsxaiKPFW-MGWyoPaqMGDXBlj43jv6B&index=9
 4. then add personnal specifications, for me it was the following ones, then confirm everything
 
